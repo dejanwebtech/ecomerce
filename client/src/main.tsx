@@ -4,8 +4,27 @@ import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
+import {
+    createBrowserRouter,
+    createRoutesFromElements,
+    Route,
+    RouterProvider,
+} from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import ProductPage from "./pages/ProductPage";
+
+const router = createBrowserRouter(
+    createRoutesFromElements(
+        <Route path="/" element={<App />}>
+            {/* <Route path="dashboard" element={<Dashboard />} /> */}
+            <Route index={true} element={<HomePage />} />
+            <Route path="product/:slug" element={<ProductPage />} />
+        </Route>
+    )
+);
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <React.StrictMode>
-        <App />
+        <RouterProvider router={router} />
     </React.StrictMode>
 );
